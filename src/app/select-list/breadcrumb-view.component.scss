@@ -1,0 +1,96 @@
+
+:host {
+    flex: 1 1 auto;
+    border-bottom: 1px solid #CFCFCF;
+    position: relative;
+    font-weight: bold;
+    font-size: 14px;
+    cursor: default;
+    user-select: none;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+:host.breadcrumbs .root {
+    padding: 0 0 0 0;
+    background-position: 8px 3px;
+    background-size: 0 7px;
+    -webkit-transition: padding 0.25s ease-out;
+    -moz-transition: padding 0.25s ease-out;
+    -ms-transition: padding 0.25s ease-out;
+    transition: padding 0.25s ease-out;
+}
+
+:host.breadcrumbs.drillin .root {
+    padding: 0 0 0 12px;
+    -webkit-transition: padding 0.4s ease-in-out;
+    -moz-transition: padding 0.4s ease-in-out;
+    -ms-transition: padding 0.4s ease-in-out;
+    transition: padding 0.4s ease-in-out;
+}
+:host.breadcrumbs.drillin .root {
+    background: url(/assets/arrow_back_grey.svg) 0 5px no-repeat transparent;
+    background-size: 7px 7px;
+    color: #416276;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.leaf {
+    opacity: 0;
+    padding: 0 0 0 25px;
+    background-position: 13px 3px;
+    background-size: 6px 6px;
+}
+:host.breadcrumbs.drillin .leaf {
+    opacity: 1;
+    padding: 4px 0 0 25px;
+    background: url(/assets/hierarchy_bracket_grey.svg) 13px 6px no-repeat transparent;
+    background-size: 6px 6px;
+    -webkit-transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -ms-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+.level {
+    text-overflow: ellipsis;
+    white-space: pre;
+    overflow: hidden;
+}
+:host.multi .level {
+    padding-right: 80px;
+}
+
+:host.multi .breadcrumbs .show-selected {
+    position: absolute;
+    top: 10px;
+    right: 62px;
+    width: 16px;
+    height: 16px;
+    background: url(/assets/checkmark_grey.svg) 6px 1px no-repeat transparent;
+    background-size: 14px 14px;
+    padding: 0 5px;
+    cursor: pointer;
+}
+:host.multi .breadcrumbs .show-selected:hover {
+    background: url(/assets/checkmark_black.svg) 6px 1px no-repeat transparent;
+    background-size: 14px 14px;
+}
+:host.multi .breadcrumbs .show-selected.selected,
+:host.multi .breadcrumbs .show-selected.selected:hover {
+    background: url(/assets/checkmark_blue.svg) 6px 1px no-repeat transparent;
+    background-size: 14px 14px;
+}
+
+:host.multi .breadcrumbs .done {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+:host.multi .breadcrumbs .done .dijitButtonNode {
+    padding: 1px;
+}

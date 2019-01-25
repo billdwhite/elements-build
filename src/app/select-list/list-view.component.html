@@ -1,0 +1,7 @@
+<span class="nomatches">{{nomatchesText}}</span>
+<list-view-group *ngFor="let listDataItem of data; trackBy: trackByFunction"
+                 [data]="listDataItem"
+                 [selectedData]="selectedData"
+                 [filter]="filter"
+                 [itemRenderer]="itemRenderer"
+                 (onClick)="handleClick($event)"></list-view-group>

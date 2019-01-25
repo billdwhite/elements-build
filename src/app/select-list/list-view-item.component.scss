@@ -1,0 +1,178 @@
+
+:host {
+    opacity: 1;
+    padding-left: 0;
+    padding-right: 0;
+    border-top-width: 1px;
+    border-bottom-width: 1px;
+    pointer-events: all;
+    font-family: 'proximanova-regular';
+}
+
+@keyframes expanding {
+    from {height: 0;    opacity: 0; }
+    to   {height: 28px; opacity: 1; }
+}
+
+:host.animating {
+    animation-name: expanding;
+    animation-duration: 0.16s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes collapsing {
+    from {height: 28px; opacity: 0.6; }
+    to   {height: 0;    opacity: 0;   }
+}
+
+:host.collapsed {
+    opacity: 0;
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    pointer-events: none;
+    animation-name: collapsing;
+    animation-duration: 0.16s;
+    animation-timing-function: ease-in-out;
+}
+
+:host.animating.collapsed {
+}
+
+:host /deep/ .match-highlight {
+    border: none;
+    background-color: rgba(0, 115, 176, 0.2);
+}
+
+.item.leaf {
+    color: #222222;
+    cursor: pointer;
+    font-weight: normal;
+    font-size: 13px;
+    padding: 5px 5px 5px 20px;
+    border: 1px dotted rgba(0, 0, 0, 0);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    user-select: none;
+    outline: none;
+}
+
+.item.leaf /deep/ ng-component {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+}
+
+.item.leaf /deep/ .label {
+    display: flex;
+    flex-direction: row;
+    flex: 1 1 auto;
+}
+.item.leaf /deep/ svg {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+    width: 40px;
+    height: 16px;
+    fill: #416277;
+    shape-rendering: geometricprecision;
+    stroke: #999999;
+    stroke-width: 0.5;
+    overflow: visible;
+}
+
+.item.leaf.disabled {
+    cursor: not-allowed;
+    color: #CCCCCC;
+}
+
+.leaf .label {
+    color: #333333;
+    left: 22px;
+    right: 0;
+    font-weight: normal;
+    flex: 0 0 auto;
+}
+
+:host .item-label {
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 245px;
+}
+
+:host.disabled .item-label {
+    color: #AAAAAA;
+    cursor: default;
+}
+
+:host.more .item-label {
+    display: flex;
+    flex: 1 1 auto;
+    position: relative;
+    left: 0;
+    right: 0;
+    background-image: url(/assets/arrow_right_grey.svg);
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    background-size: 10px 10px;
+    pointer-events: none;
+    white-space: pre;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+:host.more {
+    overflow: hidden;
+}
+
+:host:focus {
+    border: 1px dotted rgba(0, 115, 176, 0.3);
+    background-color: rgba(0, 115, 176, 0.04);
+}
+
+:host.disabled:focus {
+    border: 1px dotted transparent;
+    background-color: transparent;
+}
+
+:host.list-view-item:hover {
+    background-repeat: no-repeat;
+    background-color: #EBF2F5;
+    color: #333333;
+}
+
+.filters :host.list-view-item.selected {
+    background-image: url(/assets/filter_black.svg); /* specify background styles individually to hover from above style continues to work */
+    background-size: 14px 14px;
+    background-position: 6px 5px;
+    background-repeat: no-repeat;
+}
+
+:host.list-view-item.selected {
+    background-image: url(/assets/checkmark_black.svg); /* specify background styles individually to hover from above style continues to work */
+    background-size: 11px 11px;
+    background-position: 5px 9px;
+    background-repeat: no-repeat;
+}
+
+:host.list-view-item.selected.required {
+    background-image: url(/assets/checkmark_grey.svg); /* specify background styles individually to hover from above style continues to work */
+}
+
+.ie.item.leaf .item-label {
+    line-height: 15px;
+}
+
+.ie.item.leaf.more .item-label {
+    left: 20px;
+}
+
+:host.disabled:focus {
+    border: 1px dotted transparent;
+    background-color: transparent;
+}
+

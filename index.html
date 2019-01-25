@@ -1,0 +1,3114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ElementsLoading</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body>
+    <!-- Consider putting the following UMD (!) bundles -->
+    <!-- into a big one -->
+
+    <!-- core-js for legacy browsers -->
+
+<script src="./assets/core-js/core.js"></script>
+
+    <!-- Zone.js -->
+    <!-- 
+    Consider excluding zone.js when creating
+    custom Elements by using the noop zone.
+<script src="./assets/zone.js/zone.js"></script>
+    -->
+
+
+
+
+<!-- Polyfills for Browsers supporting 
+        Custom Elements. Needed b/c we downlevel
+        to ES5. See: @webcomponents/custom-elements -->
+  
+<script src="./assets/custom-elements/src/native-shim.js"></script>
+
+    <!-- Polyfills for Browsers not supporting
+        Custom Elements. See: @webcomponents/custom-elements
+-->
+<script src="./assets/custom-elements/custom-elements.min.js"></script>
+
+
+    <!-- Rx -->
+   
+<script src="./assets/rxjs/rxjs.umd.js"></script>
+
+    <!-- Angular Packages -->
+  
+<script src="./assets/core/bundles/core.umd.js"></script>
+<script src="./assets/common/bundles/common.umd.js"></script>
+<script src="./assets/platform-browser/bundles/platform-browser.umd.js"></script>
+<script src="./assets/elements/bundles/elements.umd.js"></script>
+
+    <!-- Calling Custom Element -->
+   
+    
+    <custom-button label="test button"></custom-button>
+    <!--
+    <custom-element></custom-element>
+    <select-list></select-list>
+    -->
+
+    <script>
+      const button = document.querySelector("custom-button");
+      button.addEventListener("action", event => {
+        console.log(`"action" emitted: ${event.detail}`);
+      });
+      setTimeout(() => (button.label = "Second Value"), 3000);
+/*
+      const selectList = document.querySelector("select-list");
+      selectList.addEventListener("onClickListItem", event => {
+        console.log(`"onClickListItem" emitted: ${event.detail}`);
+      });
+      setTimeout(() => {
+              */
+        /*
+        selectList.data = [
+                {_id:'1', _name:'1', _description: '1', _value: null, _children: []},
+                {_id:'2', _name:'2', _description: '2', _value: null, _children: []},
+                {_id:'3', _name:'3', _description: '3', _value: null, _children: []},
+                {_id:'4', _name:'4', _description: '4', _value: null, _children: []},
+                {_id:'5', _name:'5', _description: '5', _value: null, _children: []},
+                {_id:'6', _name:'6', _description: '6', _value: null, _children: []}
+        ];
+        */
+        /*
+        selectList.data = [
+                {_id:'0', _name:'Group1', _description: '0', _children: [
+                        {_id:'1', _name:'1', _description: '1', _value: null, _children:[]},
+                        {_id:'2', _name:'2', _description: '2', _value: null, _children:[]},
+                        {_id:'3', _name:'3', _description: '3', _value: null},
+                        {_id:'4', _name:'4', _description: '4', _value: null},
+                        {_id:'5', _name:'5', _description: '5', _value: null},
+                        {_id:'6', _name:'6', _description: '6', _value: null}
+                ]},
+                {_id:'10', _name:'Group2', _description: '10', _children: [
+                        {_id:'11', _name:'11', _description: '11', _value: null},
+                        {_id:'12', _name:'12', _description: '12', _value: null},
+                        {_id:'13', _name:'13', _description: '13', _value: null},
+                        {_id:'14', _name:'14', _description: '14', _value: null},
+                        {_id:'15', _name:'15', _description: '15', _value: null},
+                        {_id:'16', _name:'16', _description: '16', _value: null}
+                ]}
+        ];
+        
+        selectList.data = [
+          {
+            _group: true,
+            _children: [
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "Business Owner",
+                _id: "businessOwner",
+                _name: "Business Owner",
+                _description:
+                  "The person responsible for the application in its business context.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "businessOwner"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "Business Owner"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The person responsible for the application in its business context."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "2749"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "Business Owner (Person)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "businessOwnerOfApplication"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasBusinessOwner_Person_CR:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "602"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnCmpnntHsBsnssOwnrPrsn"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "Application Component has business owner Person"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#Reltype_application_component_has_business_owner_is_business_owner_of_person_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 1
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasBusinessOwner_Person_CR:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "2749",
+                  name: "Business Owner",
+                  _displayName: "Business Owner",
+                  _displayNameLong: "Business Owner (Person)"
+                }
+              },
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "Category",
+                _id: "category",
+                _name: "Category",
+                _description:
+                  "The category an application has been assigned to in the portfolio. The application portfolio may be grouped into categories based on arbitrary criteria.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "category"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "Category"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The category an application has been assigned to in the portfolio. The application portfolio may be grouped into categories based on arbitrary criteria."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "1221"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "Category (APO Category)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "categorizesApplications"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#RelType_ITG:Application_has_category_APO_Category_UUID_CompType_TRM:Application_UUID_CompType_ITG:APO_Category_UUID:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "APOCategory"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "APO Category"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "609"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnHsCtgryAPOCtgry"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application has category APO Category"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#RelType_ITG:Application_has_category_APO_Category_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 1
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#RelType_ITG:Application_has_category_APO_Category_UUID_CompType_TRM:Application_UUID_CompType_ITG:APO_Category_UUID:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "1221",
+                  name: "Category",
+                  _displayName: "Category",
+                  _displayNameLong: "Category (APO Category)"
+                }
+              },
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "IT Owner",
+                _id: "ITOwner",
+                _name: "IT Owner",
+                _description:
+                  "The person responsible for the application in its IT context.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "ITOwner"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "IT Owner"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The person responsible for the application in its IT context."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "2751"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "IT Owner (Person)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "ITOwnerOfApplication"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasITOwner_Person_CR:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "646"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnCmpnntHsITOwnrPrsn"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application Component has IT owner Person"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#Reltype_application_component_has_it_owner_is_it_owner_of_person_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 1
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasITOwner_Person_CR:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "2751",
+                  name: "IT Owner",
+                  _displayName: "IT Owner",
+                  _displayNameLong: "IT Owner (Person)"
+                }
+              },
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "Owning Organization",
+                _id: "owningOrganization",
+                _name: "Owning Organization",
+                _description:
+                  "The organization that owns the physical IT elements, resources, information and business objects related to the Application.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "owningOrganization"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "Owning Organization"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The organization that owns the physical IT elements, resources, information and business objects related to the Application."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "2637"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "Owning Organization (Internal Organization)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "ownsApplication"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/xpm#Application_HasOwner_InternalOrganization_CR:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "InternalOrganization"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Internal Organization"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "669"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnCmpnntHsOwnrOrgnztnCmpn"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "Application Component has owner Organization Component"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value: "/t/mv#RelType_OwnsApplication_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/xpm#Application_HasOwner_InternalOrganization_CR:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "2637",
+                  name: "Owning Organization",
+                  _displayName: "Owning Organization",
+                  _displayNameLong:
+                    "Owning Organization (Internal Organization)"
+                }
+              }
+            ],
+            _position: "10",
+            _enabled: true,
+            _parent: null,
+            text: "General",
+            _id: "General",
+            _name: "General",
+            _description: "General",
+            _value: null,
+            items: [
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "Business Owner",
+                _id: "businessOwner",
+                _name: "Business Owner",
+                _description:
+                  "The person responsible for the application in its business context.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "businessOwner"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "Business Owner"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The person responsible for the application in its business context."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "2749"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "Business Owner (Person)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "businessOwnerOfApplication"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasBusinessOwner_Person_CR:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "602"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnCmpnntHsBsnssOwnrPrsn"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "Application Component has business owner Person"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#Reltype_application_component_has_business_owner_is_business_owner_of_person_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 1
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasBusinessOwner_Person_CR:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "2749",
+                  name: "Business Owner",
+                  _displayName: "Business Owner",
+                  _displayNameLong: "Business Owner (Person)"
+                }
+              },
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "Category",
+                _id: "category",
+                _name: "Category",
+                _description:
+                  "The category an application has been assigned to in the portfolio. The application portfolio may be grouped into categories based on arbitrary criteria.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "category"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "Category"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The category an application has been assigned to in the portfolio. The application portfolio may be grouped into categories based on arbitrary criteria."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "1221"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "Category (APO Category)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "categorizesApplications"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#RelType_ITG:Application_has_category_APO_Category_UUID_CompType_TRM:Application_UUID_CompType_ITG:APO_Category_UUID:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "APOCategory"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "APO Category"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "609"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnHsCtgryAPOCtgry"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application has category APO Category"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#RelType_ITG:Application_has_category_APO_Category_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 1
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#RelType_ITG:Application_has_category_APO_Category_UUID_CompType_TRM:Application_UUID_CompType_ITG:APO_Category_UUID:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "1221",
+                  name: "Category",
+                  _displayName: "Category",
+                  _displayNameLong: "Category (APO Category)"
+                }
+              },
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "IT Owner",
+                _id: "ITOwner",
+                _name: "IT Owner",
+                _description:
+                  "The person responsible for the application in its IT context.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "ITOwner"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "IT Owner"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The person responsible for the application in its IT context."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "2751"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "IT Owner (Person)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "ITOwnerOfApplication"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasITOwner_Person_CR:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Person"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "646"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnCmpnntHsITOwnrPrsn"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application Component has IT owner Person"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/t/mv#Reltype_application_component_has_it_owner_is_it_owner_of_person_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 1
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value: "/xpm#Application_HasITOwner_Person_CR:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "2751",
+                  name: "IT Owner",
+                  _displayName: "IT Owner",
+                  _displayNameLong: "IT Owner (Person)"
+                }
+              },
+              {
+                _group: false,
+                _children: [],
+                _position: -1,
+                _enabled: true,
+                _parent: null,
+                text: "Owning Organization",
+                _id: "owningOrganization",
+                _name: "Owning Organization",
+                _description:
+                  "The organization that owns the physical IT elements, resources, information and business objects related to the Application.",
+                _value: {
+                  children: [],
+                  childCount: 0,
+                  ancestors: [],
+                  group: false,
+                  childGroupCount: 0,
+                  properties: {
+                    table: {
+                      $$ssystemName: {
+                        key: "systemName",
+                        value: {
+                          systemName: "systemName",
+                          dirty: true,
+                          valid: true,
+                          value: "owningOrganization"
+                        }
+                      },
+                      $$sgroups: {
+                        key: "groups",
+                        value: {
+                          systemName: "groups",
+                          dirty: true,
+                          valid: true,
+                          value: [
+                            {
+                              _order: "10",
+                              _name: "General",
+                              _uuid: "A8FAE21A-D9C5-49DC-8E49-77577E1B157F",
+                              _uri: "/xpm/view/propertyGroup#general",
+                              _id: 15
+                            }
+                          ]
+                        }
+                      },
+                      $$sdisplayName: {
+                        key: "displayName",
+                        value: {
+                          systemName: "displayName",
+                          dirty: false,
+                          valid: true,
+                          value: null
+                        }
+                      },
+                      $$sinheritActive: {
+                        key: "inheritActive",
+                        value: {
+                          systemName: "inheritActive",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sexternal: {
+                        key: "external",
+                        value: {
+                          systemName: "external",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$scustom: {
+                        key: "custom",
+                        value: {
+                          systemName: "custom",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatatype: {
+                        key: "datatype",
+                        value: {
+                          systemName: "datatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:reference"
+                        }
+                      },
+                      $$sname: {
+                        key: "name",
+                        value: {
+                          systemName: "name",
+                          dirty: false,
+                          valid: true,
+                          value: "Owning Organization"
+                        }
+                      },
+                      $$sdescription: {
+                        key: "description",
+                        value: {
+                          systemName: "description",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "The organization that owns the physical IT elements, resources, information and business objects related to the Application."
+                        }
+                      },
+                      $$sactive: {
+                        key: "active",
+                        value: {
+                          systemName: "active",
+                          dirty: false,
+                          valid: true,
+                          value: true
+                        }
+                      },
+                      $$srequired: {
+                        key: "required",
+                        value: {
+                          systemName: "required",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sscope: {
+                        key: "scope",
+                        value: {
+                          systemName: "scope",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$sscopeName: {
+                        key: "scopeName",
+                        value: {
+                          systemName: "scopeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Application"
+                        }
+                      },
+                      $$scomputed: {
+                        key: "computed",
+                        value: {
+                          systemName: "computed",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sdatabaseId: {
+                        key: "databaseId",
+                        value: {
+                          systemName: "databaseId",
+                          dirty: false,
+                          valid: true,
+                          value: "2637"
+                        }
+                      },
+                      $$sdatatypeName: {
+                        key: "datatypeName",
+                        value: {
+                          systemName: "datatypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "reference"
+                        }
+                      },
+                      $$sscopeDatabaseId: {
+                        key: "scopeDatabaseId",
+                        value: {
+                          systemName: "scopeDatabaseId",
+                          dirty: false,
+                          valid: true,
+                          value: 313
+                        }
+                      },
+                      $$sscopeDatatype: {
+                        key: "scopeDatatype",
+                        value: {
+                          systemName: "scopeDatatype",
+                          dirty: false,
+                          valid: true,
+                          value: "troux:comp"
+                        }
+                      },
+                      $$sversion: {
+                        key: "version",
+                        value: {
+                          systemName: "version",
+                          dirty: false,
+                          valid: true,
+                          value: 4
+                        }
+                      },
+                      $$scurrentUserAccess: {
+                        key: "currentUserAccess",
+                        value: {
+                          systemName: "currentUserAccess",
+                          dirty: false,
+                          valid: true,
+                          value: ["write"]
+                        }
+                      },
+                      $$sdisplayNameLong: {
+                        key: "displayNameLong",
+                        value: {
+                          systemName: "displayNameLong",
+                          dirty: false,
+                          valid: true,
+                          value: "Owning Organization (Internal Organization)"
+                        }
+                      },
+                      $$speerRPDSystemName: {
+                        key: "peerRPDSystemName",
+                        value: {
+                          systemName: "peerRPDSystemName",
+                          dirty: false,
+                          valid: true,
+                          value: "ownsApplication"
+                        }
+                      },
+                      $$speerRPDUri: {
+                        key: "peerRPDUri",
+                        value: {
+                          systemName: "peerRPDUri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/xpm#Application_HasOwner_InternalOrganization_CR:1"
+                        }
+                      },
+                      $$sisParentDefinition: {
+                        key: "isParentDefinition",
+                        value: {
+                          systemName: "isParentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sisSubComponentDefinition: {
+                        key: "isSubComponentDefinition",
+                        value: {
+                          systemName: "isSubComponentDefinition",
+                          dirty: false,
+                          valid: true,
+                          value: false
+                        }
+                      },
+                      $$sotherComponentType: {
+                        key: "otherComponentType",
+                        value: {
+                          systemName: "otherComponentType",
+                          dirty: false,
+                          valid: true,
+                          value: "InternalOrganization"
+                        }
+                      },
+                      $$sotherComponentTypeName: {
+                        key: "otherComponentTypeName",
+                        value: {
+                          systemName: "otherComponentTypeName",
+                          dirty: false,
+                          valid: true,
+                          value: "Internal Organization"
+                        }
+                      },
+                      $$srelationshipTypeId: {
+                        key: "relationshipTypeId",
+                        value: {
+                          systemName: "relationshipTypeId",
+                          dirty: false,
+                          valid: true,
+                          value: "669"
+                        }
+                      },
+                      $$srelationshipType: {
+                        key: "relationshipType",
+                        value: {
+                          systemName: "relationshipType",
+                          dirty: false,
+                          valid: true,
+                          value: "ApplctnCmpnntHsOwnrOrgnztnCmpn"
+                        }
+                      },
+                      $$srelationshipTypeName: {
+                        key: "relationshipTypeName",
+                        value: {
+                          systemName: "relationshipTypeName",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "Application Component has owner Organization Component"
+                        }
+                      },
+                      $$srelationshipTypeURI: {
+                        key: "relationshipTypeURI",
+                        value: {
+                          systemName: "relationshipTypeURI",
+                          dirty: false,
+                          valid: true,
+                          value: "/t/mv#RelType_OwnsApplication_UUID"
+                        }
+                      },
+                      $$srole: {
+                        key: "role",
+                        value: {
+                          systemName: "role",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sminCardinality: {
+                        key: "minCardinality",
+                        value: {
+                          systemName: "minCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$smaxCardinality: {
+                        key: "maxCardinality",
+                        value: {
+                          systemName: "maxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$sotherMinCardinality: {
+                        key: "otherMinCardinality",
+                        value: {
+                          systemName: "otherMinCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 0
+                        }
+                      },
+                      $$sotherMaxCardinality: {
+                        key: "otherMaxCardinality",
+                        value: {
+                          systemName: "otherMaxCardinality",
+                          dirty: false,
+                          valid: true,
+                          value: 2147483647
+                        }
+                      },
+                      $$s_uri: {
+                        key: "_uri",
+                        value: {
+                          systemName: "_uri",
+                          dirty: false,
+                          valid: true,
+                          value:
+                            "/xpm#Application_HasOwner_InternalOrganization_CR:0"
+                        }
+                      }
+                    },
+                    nElements: 37
+                  },
+                  isNewObject: false,
+                  id: "2637",
+                  name: "Owning Organization",
+                  _displayName: "Owning Organization",
+                  _displayNameLong:
+                    "Owning Organization (Internal Organization)"
+                }
+              }
+            ]
+          }
+        ];
+       console.log("selectList", selectList.data);
+      }, 1000);
+      */
+    </script>
+  </body>
+</html>

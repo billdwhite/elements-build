@@ -1,0 +1,111 @@
+:host {
+    border: 1px solid #BBBBBB;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+    position: absolute;
+    min-width: 300px;
+    min-height: 400px;
+    font-family: 'proximanova-regular';
+}
+
+.header {
+    background-color: #EEEEEE;
+    border-bottom: 1px solid #CFCFCF;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    overflow: hidden;
+}
+
+.header .breadcrumbs-view {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+}
+
+.header .search-textbox {
+    flex: 0 0 auto;
+    background-color: #FFFFFF;
+    margin: 2px;
+    border-radius: 2px;
+    outline: none;
+    border: 1px solid #CCCCCC;
+    padding: 6px;
+}
+
+.list-container {
+    height: 100%; /* comment out to use shrinking list height on search */
+    display: flex;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
+    background-color: #FFFFFF;
+    border-radius: 0 0 2px 2px;
+}
+
+.search {
+    margin: 5px 4px;
+    width: auto;
+    display: block;
+    position: relative;
+}
+
+:host.animating /deep/ .list-view {
+    position: absolute;
+    top: 0;
+}
+
+:host.animating /deep/ .list-view.scroll {
+    width: 287px;
+}
+
+:host.animating.drillin /deep/ .list-view:first-child {
+    left: 0;
+}
+:host.animating.drillin /deep/ .list-view:last-child {
+    left: 300px;
+}
+:host.animating.drillout /deep/ .list-view:first-child {
+    left: -300px;
+}
+:host.animating.drillout /deep/ .list-view:last-child {
+    left: 0;
+}
+
+.list-view .nomatches {
+    opacity: 0;
+    font-style: italic;
+    font-size: 12px;
+    color: #999999;
+    padding: 15px 10px 10px 10px;
+    user-select: none;
+    position: absolute;
+    pointer-events: none;
+    cursor: pointer;
+}
+
+.list-view.empty .nomatches {
+    transition-delay: 0.05s;
+    transition: opacity 0.15s ease-out, padding 0.15s ease-in-out;
+    opacity: 1;
+    padding-top: 10px;
+    cursor: default;
+}
+
+/* use width of 0 for IE to workaround pointer-events not getting passed through */
+.ie.list-view .nomatches {
+    display: none;
+}
+.ie.list-view.empty .nomatches {
+    display: inherit;
+}
+
+:host:not(.animating) .item.leaf:hover,
+:host:not(.animating) .item.leaf.more:hover {
+    background-color: rgba(0, 115, 176, 0.1);
+}
+:host:not(.animating) .item.leaf.disabled:hover {
+    background-color: transparent;
+}

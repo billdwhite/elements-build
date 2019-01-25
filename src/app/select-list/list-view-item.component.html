@@ -1,0 +1,8 @@
+<div class="item leaf"
+     [class.selected]="selected"
+     [class.disabled]="!data._enabled"
+     kendoTooltip title="{{data._description || data._name}}" position="left"
+     [tabindex]="tabIndex"
+     (click)="handleClick($event)">
+     <ng-template renderer-host></ng-template>
+</div>

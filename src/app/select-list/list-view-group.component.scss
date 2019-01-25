@@ -1,0 +1,60 @@
+
+:host {
+    padding-bottom: 5px;
+    padding-top: 5px;
+    background-color: #FFFFFF;
+    border-top: 1px solid #E4E4E4;
+    cursor: default;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    user-select: none;
+    z-index: 1;
+    font-family: 'proximanova-regular';
+}
+
+:host .group-title {
+    color: #666666;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 11px;
+}
+
+:host.collapsed .group-title {
+    height: 0;
+}
+
+:host:first-of-type {
+    border-top: none;
+    padding-top: 5px;
+}
+
+@keyframes expanding {
+    to   {height: 0;    opacity: 0.2;}
+    to   {height: auto; opacity: 1; }
+}
+
+:host.animating {
+    animation-name: expanding;
+    animation-duration: 0.16s;
+    animation-timing-function: ease-in-out;
+}
+
+@keyframes collapsing {
+    from {height: auto; opacity: 0.6;}
+    to   {height: 0;    opacity: 0.2;}
+}
+
+:host.collapsed {
+    opacity: 0;
+    height: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-top-width: 0;
+    border-bottom-width: 0;
+    pointer-events: none;
+    animation-name: collapsing;
+    animation-duration: 0.16s;
+    animation-timing-function: ease-in-out;
+}

@@ -1,0 +1,96 @@
+@import "~assets/styles/variables.scss";
+
+/*!
+ * Web Fonts from Fontspring.com
+
+ * All OpenType features and all extended glyphs have been removed.
+ * Fully installable fonts can be purchased at http://www.fontspring.com
+ * The fonts included in this stylesheet are subject to the End User License you purchased
+ * from Fontspring. The fonts are protected under domestic and international trademark and
+ * copyright law. You are prohibited from modifying, reverse engineering, duplicating, or
+ * distributing this font software.
+
+ * (c) 2010-2017 Fontspring
+
+ * The fonts included are copyrighted by the vendor listed below.
+
+ * Vendor:      Mark Simonson Studio
+ * License URL: https://www.fontspring.com/licenses/mark-simonson-studio/webfont
+ */
+/* fonts */
+$font-folder: '/assets/fonts' !default;
+
+@font-face {
+    font-family: 'proximanova-regular';
+    src: url('#{$font-folder}/proximanova/proximanova-regular-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proximanova-regularit';
+    src: url('#{$font-folder}/proximanova/proximanova-regularit-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-regularit-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proximanova-bold';
+    src: url('#{$font-folder}/proximanova/proximanova-bold-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proximanova-boldit';
+    src: url('#{$font-folder}/proximanova/proximanova-boldit-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-boldit-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proximanova-light';
+    src: url('#{$font-folder}/proximanova/proximanova-light-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-light-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proximanova-lightit';
+    src: url('#{$font-folder}/proximanova/proximanova-lightit-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-lightit-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proximanova-semibold';
+    src: url('#{$font-folder}/proximanova/proximanova-semibold-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-semibold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'proximanova-semiboldit';
+    src: url('#{$font-folder}/proximanova/proximanova-semiboldit-webfont.woff2') format('woff2'),
+    url('#{$font-folder}/proximanova/proximanova-semiboldit-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+$proximanova:                   "proximanova-regular";
+$proximanova-italic:            "proximanova-regularit";
+$proximanova-bold:              "proximanova-bold";
+$proximanova-bold-italic:       "proximanova-boldit";
+$proximanova-light:             "proximanova-light";
+$proximanova-light-italic:      "proximanova-lightit";
+$proximanova-semibold:          "proximanova-semibold";
+$proximanova-semibold-italic:   "proximanova-semiboldit";
+
+.proximanova                    { font-family: $proximanova; }
+.proximanova-italic             { font-family: $proximanova-italic; }
+.proximanova-bold               { font-family: $proximanova-bold; }
+.proximanova-bold-italic        { font-family: $proximanova-bold-italic; }
+.proximanova-light              { font-family: $proximanova-light; }
+.proximanova-light-italic       { font-family: $proximanova-light-italic; }
+.proximanova-semibold           { font-family: $proximanova-semibold; }
+.proximanova-semibold-italic    { font-family: $proximanova-semibold-italic; }

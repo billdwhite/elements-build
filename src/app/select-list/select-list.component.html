@@ -1,0 +1,29 @@
+<div #headerContainer
+     class="header">
+    <breadcrumb-view
+        #breadcrumbView
+        (onBreadcrumbClick)="handleClickBreadcrumb()">
+    </breadcrumb-view>
+<!--
+    <input #searchTextBoxKendo
+           kendoTextBox
+           class="search-textbox"
+           type="text"
+           (keyup)="handleKeyUpSearchTextBox($event)"
+           (change)="handleChangeSearchTextBox($event)"
+           (click)="handleClickSearchTextBox($event)"/>
+    -->
+    <input #searchTextBox
+           class="search-textbox"
+           type="text"
+           placeholder="Search"
+           (keyup)="handleKeyUpSearchTextBox($event)"
+           (change)="handleChangeSearchTextBox($event)"
+           (click)="handleClickSearchTextBox($event)" />
+</div>
+<div #listContainer
+     class="list-container"
+     (click)="handleClickListContainer($event)"
+     (keydown)="handleKeyDownListContainer($event)">
+     <ng-template #listPlaceHolder></ng-template>
+</div>

@@ -1,0 +1,8 @@
+<div *ngIf="data.getName() != null && data.getName().length > 0"
+     class="group-title">{{data.getName()}}</div>
+<list-view-item *ngFor="let listDataItem of data._children"
+                [data]="listDataItem"
+                [itemRenderer]="itemRenderer"
+                [selected]="listDataItem['__selected']"
+                [matchText]="filter?._text"
+                (onClick)="handleClick($event)"></list-view-item>

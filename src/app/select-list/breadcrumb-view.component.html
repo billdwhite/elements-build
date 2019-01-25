@@ -1,0 +1,8 @@
+<div class="breadcrumb-container"
+     [style.padding]="breadcrumbsVisible ? '10px': '0'">
+    <div #breadcrumbBarRoot
+         class="level root"
+         (click)="handleClickBreadcrumb($event)">{{textLabel}}</div>
+    <div #breadcrumbBarLeaf
+         class="level leaf">{{leafLabel}}</div>
+</div>

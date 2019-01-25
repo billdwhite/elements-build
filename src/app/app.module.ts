@@ -1,16 +1,30 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, Injector } from "@angular/core";
+import { createCustomElement } from "@angular/elements";
+import { AppComponent } from "./app.component";
+import { ButtonComponent } from "./button/button.component";
+import {
+  SelectListComponent,
+  BreadcrumbViewComponent,
+  ListViewComponent,
+  ListViewGroupComponent,
+  ListViewItemComponent,
+  SelectListItemRendererComponent
+} from "./select-list";
 
 @NgModule({
   declarations: [
-    AppComponent
+    ButtonComponent
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [],
+  entryComponents: [
+    ButtonComponent
+  ]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private injector: Injector) {}
+
+  ngDoBootstrap() {}
+}
