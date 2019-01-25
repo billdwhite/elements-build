@@ -23,11 +23,9 @@ platformBrowserDynamic().bootstrapModule(AppModule).then(ref => {
   const elm2 = createCustomElement(ButtonComponent, { injector: ref.injector });
   // Register the custom element with the browser.
   customElements.define('custom-button', elm2);
-/*
   // Convert `ButtonComponent` to a custom element.
   const elm3 = createCustomElement(SelectListComponent, { injector: ref.injector });
   // Register the custom element with the browser.
   customElements.define('select-list', elm3);
-  */
   // Otherwise, log the boot error
 }).catch(err => console.error(err));

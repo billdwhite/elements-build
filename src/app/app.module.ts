@@ -14,13 +14,25 @@ import {
 
 @NgModule({
   declarations: [
-    ButtonComponent
+    ButtonComponent,
+    SelectListComponent,
+    BreadcrumbViewComponent,
+    ListViewComponent,
+    ListViewGroupComponent,
+    ListViewItemComponent,
+    SelectListItemRendererComponent
   ],
   imports: [BrowserModule],
   providers: [],
   bootstrap: [],
   entryComponents: [
-    ButtonComponent
+    ButtonComponent,
+    SelectListComponent,
+    BreadcrumbViewComponent,
+    ListViewComponent,
+    ListViewGroupComponent,
+    ListViewItemComponent,
+    SelectListItemRendererComponent
   ]
 })
 export class AppModule {

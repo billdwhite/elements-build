@@ -53,9 +53,9 @@
    
     
     <custom-button label="test button"></custom-button>
+    <select-list></select-list>
     <!--
     <custom-element></custom-element>
-    <select-list></select-list>
     -->
 
     <script>
@@ -64,13 +64,13 @@
         console.log(`"action" emitted: ${event.detail}`);
       });
       setTimeout(() => (button.label = "Second Value"), 3000);
-/*
+
       const selectList = document.querySelector("select-list");
       selectList.addEventListener("onClickListItem", event => {
         console.log(`"onClickListItem" emitted: ${event.detail}`);
       });
       setTimeout(() => {
-              */
+        
         /*
         selectList.data = [
                 {_id:'1', _name:'1', _description: '1', _value: null, _children: []},
@@ -80,8 +80,6 @@
                 {_id:'5', _name:'5', _description: '5', _value: null, _children: []},
                 {_id:'6', _name:'6', _description: '6', _value: null, _children: []}
         ];
-        */
-        /*
         selectList.data = [
                 {_id:'0', _name:'Group1', _description: '0', _children: [
                         {_id:'1', _name:'1', _description: '1', _value: null, _children:[]},
@@ -100,7 +98,7 @@
                         {_id:'16', _name:'16', _description: '16', _value: null}
                 ]}
         ];
-        
+        */
         selectList.data = [
           {
             _group: true,
@@ -3108,7 +3106,7 @@
         ];
        console.log("selectList", selectList.data);
       }, 1000);
-      */
+      
     </script>
   </body>
 </html>
