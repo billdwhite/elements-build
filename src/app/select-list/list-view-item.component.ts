@@ -59,7 +59,6 @@ export class ListViewItemComponent implements OnInit, OnChanges, AfterViewInit, 
 
     constructor(private elementRef: ElementRef,
                 private renderer: Renderer2,
-                private viewContainerRef: ViewContainerRef,
                 private componentFactoryResolver: ComponentFactoryResolver) {
     }
 
@@ -72,7 +71,7 @@ export class ListViewItemComponent implements OnInit, OnChanges, AfterViewInit, 
 
     ngAfterViewInit(): void {
         let componentFactory: ComponentFactory<ItemRenderer> = this.componentFactoryResolver.resolveComponentFactory(this.itemRenderer);
-        let viewContainerRef: ViewContainerRef = this.viewContainerRef;
+        let viewContainerRef: ViewContainerRef = this.rendererHost.viewContainerRef;
         let componentRef: ComponentRef<ItemRenderer> = viewContainerRef.createComponent(componentFactory);
         this.itemRendererInstance = <ItemRenderer>componentRef.instance;
         this.itemRendererInstance.data = this.data;

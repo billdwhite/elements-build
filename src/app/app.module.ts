@@ -11,6 +11,9 @@ import {
   ListViewItemComponent,
   SelectListItemRendererComponent
 } from "./select-list";
+import {
+  RendererHostDirective
+} from "./renderers";
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import {
     ListViewComponent,
     ListViewGroupComponent,
     ListViewItemComponent,
-    SelectListItemRendererComponent
+    SelectListItemRendererComponent,
+    RendererHostDirective
   ],
   imports: [BrowserModule],
   providers: [],
