@@ -18,7 +18,6 @@
  * License URL: https://www.fontspring.com/licenses/mark-simonson-studio/webfont
  */
 /* fonts */
-$font-folder: '/assets/fonts' !default;
 
 @font-face {
     font-family: 'proximanova-regular';

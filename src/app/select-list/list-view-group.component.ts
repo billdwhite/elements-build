@@ -217,7 +217,6 @@ export class ListViewGroupComponent implements OnInit, OnChanges, OnDestroy {
 
 
     public render(): void {
-        console.log("render()");
         this.hidden = !this.listViewItemComponents.some((child: ListViewItemComponent): boolean => {
             return !child.hidden;
         });

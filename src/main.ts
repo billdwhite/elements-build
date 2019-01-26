@@ -1,11 +1,9 @@
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
 import { createCustomElement } from '@angular/elements';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 import { ButtonComponent } from "./app/button/button.component";
-import { AppComponent } from "./app/app.component";
 import { SelectListComponent } from './app/select-list';
 
 if (environment.production) {
