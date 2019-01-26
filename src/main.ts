@@ -3,7 +3,6 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { createCustomElement } from '@angular/elements';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
-import { ButtonComponent } from "./app/button/button.component";
 import { SelectListComponent } from './app/select-list';
 
 if (environment.production) {
@@ -18,12 +17,9 @@ platformBrowserDynamic().bootstrapModule(AppModule).then(ref => {
   window['ngRef'] = ref;
 
   // Convert `ButtonComponent` to a custom element.
-  const elm2 = createCustomElement(ButtonComponent, { injector: ref.injector });
+  const selectList = createCustomElement(SelectListComponent, { injector: ref.injector });
   // Register the custom element with the browser.
-  customElements.define('custom-button', elm2);
-  // Convert `ButtonComponent` to a custom element.
-  const elm3 = createCustomElement(SelectListComponent, { injector: ref.injector });
-  // Register the custom element with the browser.
-  customElements.define('select-list', elm3);
+  customElements.define('select-list', selectList);
+
   // Otherwise, log the boot error
 }).catch(err => console.error(err));
