@@ -113,7 +113,6 @@ export class ListViewItemComponent implements OnInit, OnChanges, AfterViewInit, 
     public render(): void {
         let nameText: string = this._data.getName();
         let newHidden: boolean = this.matchText ? !this.matches(this.matchText, nameText) : false;
-        console.log("list-view-item.render()" , newHidden);
         if (this.data['__selected']) {
             this.renderer.addClass(this.getDomNode(), 'selected');
         } else {

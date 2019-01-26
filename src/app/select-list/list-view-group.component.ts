@@ -43,6 +43,7 @@ export class ListViewGroupComponent implements OnInit, OnChanges, OnDestroy {
         set filter(arg: ListFilter) {
             this._filter = arg;
             this.changeDetectorRef.detectChanges();
+            this.render();
         }
         get filter(): ListFilter {
             return this._filter;
@@ -216,6 +217,7 @@ export class ListViewGroupComponent implements OnInit, OnChanges, OnDestroy {
 
 
     public render(): void {
+        console.log("render()");
         this.hidden = !this.listViewItemComponents.some((child: ListViewItemComponent): boolean => {
             return !child.hidden;
         });

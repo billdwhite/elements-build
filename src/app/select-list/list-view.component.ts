@@ -1,4 +1,4 @@
-import {Component, OnInit, OnDestroy, ElementRef, EventEmitter, Input, Output, Type, ViewEncapsulation} from "@angular/core";
+import {Component, OnInit, OnDestroy, ElementRef, EventEmitter, Input, Output, Type, ViewEncapsulation, ChangeDetectorRef} from "@angular/core";
 import {ListFilter} from "./list-filter";
 import {ListDataItem} from "../list-data-item";
 import {ItemRenderer} from "../renderers/item-renderer.interface";
@@ -39,7 +39,8 @@ export class ListViewComponent implements OnInit, OnDestroy {
 
 
 
-    constructor(private elementRef: ElementRef) {
+    constructor(private elementRef: ElementRef,
+                private changeDetectorRef: ChangeDetectorRef) {
     }
 
 
@@ -62,7 +63,6 @@ export class ListViewComponent implements OnInit, OnDestroy {
 
 
     public setData(data: ListDataItem[], selectedData: ListDataItem[]): void {
-        console.log("list-view.setData()", data);
         this.data = data;
         this.selectedData = selectedData;
     }
@@ -77,6 +77,7 @@ export class ListViewComponent implements OnInit, OnDestroy {
 
     public setFilter(listFilter: ListFilter): void { // TODO: auto render when set?
         this.filter = listFilter;
+        this.changeDetectorRef.detectChanges();
     }
 
 

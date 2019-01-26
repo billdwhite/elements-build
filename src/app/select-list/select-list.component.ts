@@ -20,7 +20,7 @@ import { SelectListItemRendererComponent } from './select-list-item-renderer.com
     templateUrl:     'select-list.component.html',
     styleUrls:      ['select-list.component.scss'],
     host:           {'class': 'select-list'},
-    changeDetection: ChangeDetectionStrategy.OnPush,
+    changeDetection: ChangeDetectionStrategy.Default,
     encapsulation:   ViewEncapsulation.Emulated
 })
 
@@ -31,6 +31,7 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @HostListener('document:click', ['$event'])
         handleClickOutside(event: Event): void {
+            console.log("click");
             if (!this.elementRef.nativeElement.contains(event.target)) {
                 this.onBlur.emit();
             }
@@ -168,6 +169,9 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     ngAfterViewInit(): void {
         this.updateMetrics();
+        this.resizeListener = this.renderer.listen('window', 'resize', (event: any): void => { // recreate resize listener
+            this.updateMetrics();
+        });
     }
 
 
@@ -230,7 +234,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /* used by template */
     public handleChangeSearchTextBox(event: Event): void {
-        console.log("handleChangeSearchTextBox");
         this.closeTooltips();
         if (event && event['key'] === 'Escape') {
             this.cancelHandler();
@@ -241,7 +244,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     public handleClickSearchTextBox(event: Event): void {
-        console.log("handleClickSearchTextBox");
         event.stopPropagation(); // stop propagation of clicks into search field; this causes other dialogs to close (i.e. see popup.component.ts)
     }
 
@@ -249,14 +251,12 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     /* used by template */
     public handleClickBreadcrumb() {
-        console.log("handleClickBreadcrumb");
         this.listDrillOut();
     }
 
 
 
     private toggleShowSelected(arg: any): void {
-        console.log("toggleShowSelected", arg);
         let proposedValue: boolean = _isUndefined(arg) ? !this.showSelectedOnly : arg;
         if (this.showSelectedOnly !== proposedValue) {
             this.showSelectedOnly = proposedValue;
@@ -274,7 +274,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private scheduleFilterUpdate(): void {
-        console.log("scheduleFilterUpdate");
         this.filterDirty = true;
         _defer(this.updateFilterState.bind(this));
     }
@@ -291,7 +290,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private updateListFilter(): void {
-        console.log("updateListFilter");
         let filter: ListFilter = new ListFilter();
         filter.setText(this.searchTextBox.nativeElement.value);
         filter.setSelected(this.showSelectedOnly);
@@ -340,7 +338,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private createListView(): ListViewComponent {
-        console.log("createListView");
         let listViewComponentFactory: ComponentFactory<ListViewComponent> = this.componentFactoryResolver.resolveComponentFactory(ListViewComponent);
         let listViewComponentRef: ComponentRef<ListViewComponent> = this.listPlaceHolder.createComponent<ListViewComponent>(listViewComponentFactory);
         let listViewComponent: ListViewComponent = listViewComponentRef.instance;
@@ -354,7 +351,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     public show(position: UIPosition): void {
-        console.log("show");
         this.renderer.setStyle(this.getDomNode(), "opacity", "1");
         this.position = position;
         this.searchTextBox.nativeElement.focus(); // explicitly set focus in search field; otherwise subsequent blur(lost focus) may not close dialog
@@ -365,7 +361,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private onOpen(): void {
-        console.log("onOpen");
         if (this.dataChanged) { // conceal resizing on open if data has changed
             this.renderer.setStyle(this.getDomNode(), "opacity", "0");
         }
@@ -375,10 +370,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
         // need this so menus will appear above other controls
         //this.renderer.setStyle(this.elementRef.nativeElement, "z-index", 20000);
-
-        this.resizeListener = this.renderer.listen('window', 'resize', (event: any): void => { // recreate resize listener
-            this.updateMetrics();
-        });
 
         this.updateMetrics();
 
@@ -416,7 +407,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private reset(): void {
-        console.log("reset");
         this.searchTextBox.nativeElement.value = '';  // clear search first so overall list height does not get resized too small on subsequent openings
         while (this.listStack.size() > 1) {
             let nextListToRemove: ListViewComponent = this.listStack.pop();
@@ -436,7 +426,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private updateMetrics(): void {
-        console.log("updateMetrics");
         this.position = UIUtils.getWindowFitPosition(this.position);
         this.renderer.setStyle(this.getDomNode(), "top", this.position.getTop() + "px");
         this.renderer.setStyle(this.getDomNode(), "left", this.position.getLeft() + "px");
@@ -448,7 +437,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private listDrillIn(drillInListDataItem: ListDataItem): void {
-        console.log("listDrillIn");
         this.breadcrumbView.appendBreadcrumb(drillInListDataItem);
         let outgoingList: ListViewComponent = this.listStack.peek();
         let incomingList: ListViewComponent = this.createListView();
@@ -507,7 +495,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
 
     private listDrillOut(): void {
-        console.log("listDrillOut");
         if (this.listStack.size() > 1) { // only drill out if necessary
             this.breadcrumbView.appendBreadcrumb(null);
             let outgoingList: ListViewComponent = this.listStack.pop();
