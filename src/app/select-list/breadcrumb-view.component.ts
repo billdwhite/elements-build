@@ -1,4 +1,4 @@
-import {Component, OnInit, AfterViewInit, OnDestroy, ElementRef, EventEmitter, ViewChild, Output, Renderer2, ViewEncapsulation} from "@angular/core";
+import {Component, OnInit, AfterViewInit, OnDestroy, ElementRef, EventEmitter, ViewChild, Input, Output, Renderer2, ViewEncapsulation} from "@angular/core";
 import {ListDataItem} from "../list-data-item";
 
 @Component({
@@ -13,6 +13,12 @@ export class BreadcrumbViewComponent implements OnInit, AfterViewInit, OnDestroy
 
     static readonly EVENT_BREADCRUMBCLICKED = "eventBreadcrumbClicked";
 
+
+    @Input('title')
+        set title(titleArg: string) {
+          this.textLabel = titleArg;
+          this.updateVisibility();
+        }
 
     @Output('onBreadcrumbClick')
         onBreadcrumbClick: EventEmitter<any> = new EventEmitter();
@@ -77,14 +83,6 @@ export class BreadcrumbViewComponent implements OnInit, AfterViewInit, OnDestroy
         this.onBreadcrumbClick.emit(event);
     }
 
-
-
-    public setLabel(arg: string): void {
-        this.textLabel = arg;
-        this.updateVisibility();
-// @TODO
-        //this.breadcrumbBarRootTooltip.label = "<div class='defaultTooltip'><span class='message'>" + labelText + "</span></div>";
-    }
 
 
 

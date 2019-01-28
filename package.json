@@ -26,7 +26,7 @@
     "build:delme2-host:externals": "ng build --extra-webpack-config webpack.externals.js  --prod --project delme2-host",
     "build:delme2:externals": "ng build --extra-webpack-config webpack.externals.js -- single-bundle --output-hashing none --prod --project delme2",
     "package": "cat dist/elements-demo/{runtime,polyfills,scripts,main}.js | gzip > elements.js.gz",
-    "serve": "http-server --gzip"
+    "serve": "http-server"
   },
   "private": true,
   "dependencies": {
@@ -65,6 +65,7 @@
     "concat": "^1.0.3",
     "cpr": "^3.0.1",
     "fs-extra": "^7.0.1",
+    "http-server": "^0.11.1",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~3.1.4",
