@@ -31,7 +31,6 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @HostListener('document:click', ['$event'])
         handleClickOutside(event: Event): void {
-            console.log("click");
             if (!this.elementRef.nativeElement.contains(event.target)) {
                 this.onBlur.emit();
             }
@@ -49,34 +48,15 @@ export class SelectListComponent implements OnInit, AfterViewInit, OnDestroy {
 
     @Input('data')
         set data(dataItems: any[]) {
-            /*
-            let recursiveSearch: Function = (searchName: string, listDataItem: ListDataItem): ListDataItem => {
-                let foundItem: ListDataItem = listDataItem._children().find((nextListDataItem: ListDataItem) => {
-                    if (nextListDataItem.isGroup()) {
-                        return recursiveSearch(searchName, nextListDataItem);
-                    } else if (nextListDataItem.getId() == searchName) {
-                        return nextListDataItem
-                    }
-                });
-                return foundItem;
+            let recurseData: Function = (genericData: any): ListDataItem => {
+                let returnListDataItem: ListDataItem = ListDataItem.create(genericData._id, genericData._name, genericData._description, genericData);
+                if (genericData._children) {
+                    returnListDataItem.setChildren(genericData._children.map(recurseData));
+                }
+                return returnListDataItem;
             };
-            return recursiveSearch(searchName, listDataItem);
-            */
-            let incomingData: ListDataItem[] = dataItems.map((item: any) => {
-                let ldi = ListDataItem.create(item._id, item._name, item._description, item);
-                ldi.setChildren(item._children.map((item2: any) => {
-                    let ldi2 = ListDataItem.create(item2._id, item2._name, item2._description, item2);
-                    if (item2._children) {
-                        ldi2.setChildren(item2._children.map((item3: any) => {
-                            let ldi3 = ListDataItem.create(item3._id, item3._name, item3._description, item3);
-                            return ldi3
-                        }));
-                    }
-                    return ldi2;
-                }));
-                return ldi;
-            });
-            this.setData(incomingData, []);
+            let convertedData: ListDataItem[] = dataItems.map((nextItem) => recurseData(nextItem));
+            this.setData(convertedData, []);
         }
         get data() {
             return this._data;

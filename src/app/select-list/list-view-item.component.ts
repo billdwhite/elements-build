@@ -27,7 +27,7 @@ export class ListViewItemComponent implements OnInit, OnChanges, AfterViewInit, 
     @Input('data')
         set data(arg: ListDataItem) {
             this._data = arg;
-            if (this._data.getChildren() && this._data.getChildren().length > 0) {
+            if (this._data.hasChildren()) {
                 this.renderer.addClass(this.getDomNode(), 'more');
             } else {
                 this.renderer.removeClass(this.getDomNode(), 'more');
