@@ -38,9 +38,6 @@
     animation-timing-function: ease-in-out;
 }
 
-:host.animating.collapsed {
-}
-
 :host .match-highlight,
 :host /deep/ .match-highlight {
     border: none;

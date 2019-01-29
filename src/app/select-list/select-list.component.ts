@@ -85,6 +85,12 @@ static readonly EVENT_CLOSED      = "eventSelectListControlClosed";
 @Output('onBlur')
     onBlur: EventEmitter<void> = new EventEmitter<void>();
 
+@Output('onReady')
+    onReady: EventEmitter<void> = new EventEmitter<void>();
+   
+@Output('onOpen')
+    onOpen: EventEmitter<void> = new EventEmitter<void>();
+
 
 @ViewChild('listContainer',   {read: ViewContainerRef})
     listContainer:   ViewContainerRef;
@@ -106,7 +112,7 @@ private parentControl: ElementRef;
 private resizeListener: Function;           // handle to remove resizeListener
 private listStack: Collections.Stack<ListViewComponent> = new Collections.Stack<ListViewComponent>();
 private position: UIPosition = new UIPosition();
-private animationDuration: number = 1.5;
+private animationDuration: number = 0.5;
 
 
 
@@ -120,7 +126,7 @@ constructor(private elementRef: ElementRef,
 
 ngOnInit(): void {
     observableFromEvent(window, 'resize').pipe(
-        debounceTime(100))
+        debounceTime(50))
         .subscribe((e: Event) => {
             this.handleResize(e);
         });
@@ -155,6 +161,9 @@ ngAfterViewInit(): void {
     this.resizeListener = this.renderer.listen('window', 'resize', (event: any): void => { // recreate resize listener
         this.updateMetrics();
     });
+    setTimeout(() => {
+        this.onReady.emit();
+    }, 1);
 }
 
 
@@ -308,8 +317,9 @@ public setData(data: Array<ListDataItem>, selectedData?: Array<ListDataItem>): v
 
     this.listStack.peek().setData(data, selectedData);
 
-    this.changeDetectorRef.detectChanges();
     this.dataChanged = true;
+
+    this.changeDetectorRef.detectChanges();
 }
 
 
@@ -332,12 +342,12 @@ public show(position: UIPosition): void {
     this.position = position;
     this.searchTextBox.nativeElement.focus(); // explicitly set focus in search field; otherwise subsequent blur(lost focus) may not close dialog
 
-    this.onOpen();
+    this.handleOpen();
 }
 
 
 
-private onOpen(): void {
+private handleOpen(): void {
     if (this.dataChanged) { // conceal resizing on open if data has changed
         this.renderer.setStyle(this.getDomNode(), "opacity", "0");
     }
@@ -356,6 +366,10 @@ private onOpen(): void {
         }.bind(this));
     }
     this.dataChanged = false;
+
+    this.onOpen.emit();
+
+    this.changeDetectorRef.detectChanges();
 }
 
 
@@ -442,8 +456,6 @@ private listDrillIn(drillInListDataItem: ListDataItem): void {
 
     // on drill-in; the _listContainer's height is less than it will be because of the space being returned by the breadcrumb
     // bar; therefore we add 18 to the calculate to offset this space which will be available at the end of the drillOut animation
-    console.log("incomingList.getDomNode().getBoundingClientRect().height =" + incomingList.getDomNode().getBoundingClientRect().height );
-    console.log("this.listContainer.element.nativeElement.getBoundingClientRect().height" + this.listContainer.element.nativeElement.getBoundingClientRect().height);
     if (incomingList.getDomNode().getBoundingClientRect().height > this.listContainer.element.nativeElement.getBoundingClientRect().height) {
         this.renderer.addClass(incomingList.getDomNode(), 'scroll');
     }
@@ -469,7 +481,9 @@ private listDrillIn(drillInListDataItem: ListDataItem): void {
             this.renderer.setAttribute(this.listContainer.element.nativeElement, "scrollTop", "0"); // return list to top scroll position for subsequent openings
             this.searchTextBox.nativeElement.value = "";
             this.searchTextBox.nativeElement.focus();
-            this.changeDetectorRef.detectChanges();
+            setTimeout(() => {
+                this.changeDetectorRef.detectChanges();
+            }, 1);
         }
     });
 }
@@ -488,8 +502,8 @@ private listDrillOut(): void {
         this.renderer.setAttribute(incomingList.getDomNode(), "TEST", "INCOMING");
         this.renderer.setAttribute(outgoingList.getDomNode(), "TEST", "OUTGOING");
 
-
         this.changeDetectorRef.detectChanges();
+
         // on drill-out; the _listContainer's height is less than it will be because of the space being returned by the breadcrumb
         // bar; therefore we add 18 to the calculate to offset this space which will be available at the end of the drillOut animation
         let containerHeight: number = this.listContainer.element.nativeElement.style['height'];
@@ -519,7 +533,9 @@ private listDrillOut(): void {
                 outgoingList.setSearchText(this.searchTextBox.nativeElement.value);
                 this.listContainer.element.nativeElement.scrollTop = 0;  // return list to top scroll position for subsequent openings
                 this.searchTextBox.nativeElement.focus();
-                this.changeDetectorRef.detectChanges();
+                setTimeout(() => {
+                    this.changeDetectorRef.detectChanges();
+                }, 1);
             }
         });
     } else {

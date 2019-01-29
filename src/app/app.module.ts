@@ -1,6 +1,7 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule, Injector } from "@angular/core";
 import { ButtonComponent } from "./button/button.component";
+import { createCustomElement } from '@angular/elements';
 import {
   SelectListComponent,
   BreadcrumbViewComponent,
@@ -38,7 +39,13 @@ import {
   ]
 })
 export class AppModule {
+  
   constructor(private injector: Injector) {}
 
-  ngDoBootstrap() {}
+  ngDoBootstrap() {
+    // Convert `ButtonComponent` to a custom element.
+    const selectList = createCustomElement(SelectListComponent, { injector: this.injector });
+    // Register the custom element with the browser.
+    customElements.define('select-list', selectList);
+  }
 }
